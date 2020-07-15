@@ -1,0 +1,23 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="desktop-image-view" #imageView>
+      <img *ngIf="image$| async as image; else loading" [src]="image.full_url" (load)="scrollToHorizontalCenter()">
+    </div>
+    <div class="mobile-image-view">
+      <div class="wrapper" *ngIf="image$| async as image; else loading">
+        <pinch-zoom overflow="visible" backgroundColor="white">
+          <img [src]="image.full_url">
+        </pinch-zoom>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="asyncLoading">
+    <ion-spinner name="lines" *ngIf="!errorType"></ion-spinner>
+    <span class="margin-left-10" *ngIf="!errorType">Loading...</span>
+    <span class="retry" *ngIf="errorType == 'server'" (click)="retryFailedRequest()">Unable to connect. Try freshing this page.</span>
+    <span class="retry" *ngIf="errorType == 'client'" (click)="retryFailedRequest()">{{errorMsg}}. Try freshing this page.</span>
+  </div>
+</ng-template>

@@ -1,0 +1,18 @@
+.colors-wheel { position: relative;
+    img { mix-blend-mode: multiply; }
+    .left-arrow { position: absolute; left: -50px; width: 30px;
+        &:hover { color: #2e9888; }
+        &.disable { color: lightgray; }
+        i { font-size: 2rem; }
+    }
+    .right-arrow { position: absolute; right: -50px; width: 30px;
+        &:hover { color: #2e9888; }
+        &.disable { color: lightgray; }
+        i { font-size: 2rem; }
+    }
+    .variants {
+        img { 
+            &:hover { transform: scale(1.2);}
+        }
+    }
+}
